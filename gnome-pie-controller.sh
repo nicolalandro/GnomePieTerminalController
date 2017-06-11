@@ -3,6 +3,8 @@
 # xml=$(cat ./pies.conf)
 
 #!/bin/bash
+path="./pies.conf"
+
 function printfLightYellow {
 	printf "\033[93m$1\e[0m"
 }
@@ -17,8 +19,12 @@ function newLine {
 }
 
 function showPies {
-	xmlstarlet sel -t -v "//pies/pie/@name" $1
+	xmlstarlet sel -t -v "//pies/pie/@name" $path
 	newLine
+}
+
+function launcherOfPie {
+	xmlstarlet sel -t -v "//pies/pie[@name='$1']/slice/@name" $path
 }
 
 printfLightYellow "start"
@@ -27,7 +33,9 @@ newLine
 if [ "$#" -ne 1 ]; then
 	helpMessage
 elif [ "$1" == "-showPies" ]; then
- 	showPies "./pies.conf"
+ 	showPies
+elif [ "$1" == "-pieProgram" ]; then 
+	launcherOfPie "Music"
 else
 	helpMessage
 fi
