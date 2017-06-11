@@ -12,6 +12,7 @@ function printfLightYellow {
 function helpMessage {
 	printfLightYellow "...Help Message...\n"
 	printf "\t-showPies: show all pies name\n"
+	printf "\t-piePrograms: show all programs of a pie, specified by name\n"
 }
 
 function newLine {
@@ -25,20 +26,26 @@ function showPies {
 
 function launcherOfPie {
 	xmlstarlet sel -t -v "//pies/pie[@name='$1']/slice/@name" $path
+	newLine
 }
 
 printfLightYellow "start"
 newLine
 
-if [ "$#" -ne 1 ]; then
-	helpMessage
-elif [ "$1" == "-showPies" ]; then
- 	showPies
-elif [ "$1" == "-pieProgram" ]; then 
-	launcherOfPie "Music"
-else
-	helpMessage
-fi
+case "$1" in
+	-showPies)
+		showPies
+		;;
+	-h|-help)
+		helpMessage
+		;;
+	-piePrograms)
+		launcherOfPie "$2"
+		;;
+	*)
+		helpMessage
+		;;
+esac
 
 printfLightYellow "end"
 newLine
