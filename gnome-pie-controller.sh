@@ -29,6 +29,14 @@ function launcherOfPie {
 	newLine
 }
 
+function addInPie {
+	# <slice type="app" name="Audacity" icon="audacity" command="env UBUNTU_MENUPROXY=0 audacity %F" quickAction="false"/>
+
+    # xmlstarlet ed --subnode "//root" --type elem -n newsubnode -v "TEXT GOES HERE" input.xml 
+    #| xmlstarlet ed --insert //newsubnode --type attr -n attrname -v attrvalue > output.xml
+	printf "da implementare"
+}
+
 printfLightYellow "start"
 newLine
 
